@@ -45,9 +45,11 @@ export const slideLeft = keyframes`
   from {
     opacity: 0;
     transform: translateX(10px);
+    -webkit-transform: translateX(10px);
+    -moz-transform: translateX(10px);
+    -ms-transform: translateX(10px);
   }
   to {
     opacity: 1;
-    bottom: 0;
   }
 `

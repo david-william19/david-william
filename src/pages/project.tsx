@@ -39,6 +39,48 @@ export const projectResult = [
     platform: "Web Apps",
     image: "images/dashboard.png",
   },
+
+  {
+    id: 4,
+    name: "Babaju",
+    description:
+      "Mobile apps for trifting clothes and we can buy or sell clothes in that apps.",
+    techStack: [
+      "React Native",
+      "React Navigation",
+      "Native Base",
+    ],
+    platform: "Mobile Apps",
+    image: "images/porto_babaju.png",
+  },
+
+  {
+    id: 5,
+    name: "Tanahin",
+    description:
+      "Mobile apps for making a report about land in that country and search land for buy or sell.",
+    techStack: [
+      "React Native",
+      "React Navigation",
+      "Native Base",
+    ],
+    platform: "Mobile Apps",
+    image: "images/porto_tanahin.png",
+  },
+
+  {
+    id: 6,
+    name: "Kampung rotan",
+    description:
+      "website for selling and buying rattan products and also we can make a custom rattan products.",
+    techStack: [
+      "Laravel",
+      "HTML",
+      "Bootstrap",
+    ],
+    platform: "Web Apps",
+    image: "images/porto_krotan.png",
+  },
 ];
 
 function ProjectPage() {
@@ -96,7 +138,7 @@ const Heading1 = styled.h1`
 
 const CardContainer = styled.div`
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-gap: 30px;
   margin-top: 20px;
   padding: 3px;
@@ -120,6 +162,24 @@ const CardContainer = styled.div`
   div:nth-child(3){
     animation: ${slideLeft} 0.7s ease-in-out;
     animation-delay: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  div:nth-child(4){
+    animation: ${slideLeft} 0.7s ease-in-out;
+    animation-delay: 1.2s;
+    animation-fill-mode: forwards;
+  }
+
+  div:nth-child(5){
+    animation: ${slideLeft} 0.7s ease-in-out;
+    animation-delay: 1.4s;
+    animation-fill-mode: forwards;
+  }
+
+  div:nth-child(6){
+    animation: ${slideLeft} 0.7s ease-in-out;
+    animation-delay: 1.5s;
     animation-fill-mode: forwards;
   }
 
