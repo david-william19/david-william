@@ -1,0 +1,24 @@
+# Ignore development files and directories
+node_modules
+.next
+
+# Ignore build artifacts
+out
+build
+
+# Ignore environment files
+.env
+
+# Ignore package manager lock files
+yarn.lock
+package-lock.json
+
+# Ignore editor and IDE files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# Ignore version control files
+.git
+.gitignore
