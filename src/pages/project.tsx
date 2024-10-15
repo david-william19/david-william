@@ -11,6 +11,7 @@ export const projectResult = [
     techStack: ["React", "Redux-Toolkit", "Tailwind CSS"],
     platform: "Web Apps",
     image: "images/hlp.png",
+    lazyImage: "images/lazy-load-project/lazy-hlp.jpg",
   },
 
   {
@@ -21,6 +22,7 @@ export const projectResult = [
     techStack: ["React Native", "Redux-Toolkit", "Plain Styling"],
     platform: "Mobile (iOS)",
     image: "images/ppid-kemendag.png",
+    lazyImage: "images/lazy-load-project/lazy-ppid-kemendag.jpg",
   },
 
   {
@@ -38,6 +40,7 @@ export const projectResult = [
     ],
     platform: "Web Apps",
     image: "images/dashboard.png",
+    lazyImage: "images/lazy-load-project/lazy-dashboard.jpg",
   },
 
   {
@@ -52,6 +55,7 @@ export const projectResult = [
     ],
     platform: "Mobile Apps",
     image: "images/porto_babaju.png",
+    lazyImage: "images/lazy-load-project/lazy-porto_babaju.jpg",
   },
 
   {
@@ -66,6 +70,7 @@ export const projectResult = [
     ],
     platform: "Mobile Apps",
     image: "images/porto_tanahin.png",
+    lazyImage: "images/lazy-load-project/lazy-porto_tanahin.jpg",
   },
 
   {
@@ -80,6 +85,7 @@ export const projectResult = [
     ],
     platform: "Web Apps",
     image: "images/porto_krotan.png",
+    lazyImage: "images/lazy-load-project/lazy-porto_krotan.jpg",
   },
 ];
 

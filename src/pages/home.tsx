@@ -1,8 +1,10 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { TfiLinkedin, TfiInstagram, TfiFacebook } from "react-icons/tfi";
 import { ImWhatsapp } from "react-icons/im";
 import IconButton from "../components/Button/IconButton";
 import { Container, fadeIn, floating, slideUp } from "../styles/main.styles";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const IconData = [
   {
@@ -37,7 +39,13 @@ function HomePage() {
       <HomeWrapper>
       <Header>
         <ImageWrapper>
-          <ImageAvatar src="images/dapundo.jpg" alt="my-photo" />
+          <ImageAvatar
+            alt="Descriptive text"
+            effect="blur" // This adds the blur effect
+            src="images/dapundo.webp" // High-resolution image
+            width={1000}
+            height={300}
+          />
         </ImageWrapper>
       </Header>
       <Heading1>Hello World !</Heading1>
@@ -95,10 +103,9 @@ const Heading1 = styled.h1`
   animation-fill-mode: forwards;
 `;
 
-const ImageAvatar = styled.img`
+const ImageAvatar = styled(LazyLoadImage)`
   width: 200px;
-  position: absolute;
-  bottom: -20px;
+  object-position: center -60px;
   margin: 0 auto;
 `;
 
