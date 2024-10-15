@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface CardProps {
     id: Number;
@@ -10,9 +12,10 @@ interface CardProps {
 }
 
 function Card(props: CardProps) {
+    
     return (
         <CardWrapper>
-            <img className="card-image" src={props.image} alt='image'/>
+            <Image effect="blur" src={props.image} alt='image' width={'100%'} height={0} />
             <Heading1>{props.name}</Heading1>
             <DescriptionText>{props.description}</DescriptionText>
             <List>
@@ -32,14 +35,14 @@ const CardWrapper = styled.div`
     border-radius: 10px;
     background-color: #fff;
     border: 1px solid #f1f1f1;
+`
 
-    .card-image {
-        width: 100%;
-        height: 300px;
-        border-radius: 10px;
-        object-fit: cover;
-        object-position: center center;
-    }
+const Image = styled(LazyLoadImage)`
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center center;
 `
 
 const Heading1 = styled.h1`

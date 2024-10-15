@@ -4,14 +4,15 @@ import { getPosts } from "../../services/posts";
 import { slideLeft } from "../../styles/main.styles";
 import { Posts } from "../../types/posts";
 import Card from "../card";
+import Lottie from "lottie-react";
+import AnimationLoading from "../../lotties/animation-loading.json";
 
 export const PostData = () => {
   const { data, status }: UseQueryResult<Posts[], Error> = useQuery<Posts[], Error>("posts", getPosts);
 
-  console.log("data post: ", data);
   if(status === 'loading'){
     return(
-      <p>loading...</p>
+      <Lottie animationData={AnimationLoading} loop={true}  />
     )
   }
   else{
