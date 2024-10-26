@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const openSans = Open_Sans({
-  subsets: ['latin']
+  subsets: ['latin'],
 })
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${openSans.className} antialiased`}
+        className={`${open} antialiased`}
       >
         <div className="w-full bg-radial-space h-screen">
           <NavbarComponent />

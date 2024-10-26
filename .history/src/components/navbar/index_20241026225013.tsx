@@ -1,0 +1,31 @@
+import Image from "next/image";
+
+export default function NavbarComponent() {
+    return (
+        <nav className="w-full lg:pt-[61px] flex justify-between fixed">
+            <Image 
+                alt="logo-david"
+                src={"/images/logo-david.png"}
+                width={103}
+                height={103}
+            />
+
+            <ul className="rounded-full p-[8px] bg-[#9B95DE] flex list-none">
+                <li className="px-5 py-2.5">
+                    Home
+                </li>
+                <li className="px-5 py-2.5">
+                    Project
+                </li>
+                <li className="px-5 py-2.5">
+                    Posts
+                </li>
+                <li className="px-5 py-2.5">
+                    About
+                </li>
+            </ul>
+
+            <p></p>
+        </nav>
+    )
+}

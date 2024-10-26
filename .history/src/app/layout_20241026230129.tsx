@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const openSans = Open_Sans({
-  subsets: ['latin']
+  subsets: ['latin'],
 })
 
 export default function RootLayout({

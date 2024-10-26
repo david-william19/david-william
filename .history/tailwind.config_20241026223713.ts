@@ -12,8 +12,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      backgroundImage: {
-        "radial-space": "radial-gradient(#0E055B 0%, #0A062B 100%)",
+      background: {
+        "radial-space": "radial-gradient(#06041D 100%, #0A062B 100%)",
+
       },
     },
   },
