@@ -1,13 +1,16 @@
 
-import { Moon3D } from "@/components/moon";
-import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { getCurrentlyPlaying } from "@/services/spotify";
+import dynamic from "next/dynamic";
 
-export default async function Page() {
+const Moon3D = dynamic(() => import("@components/moon/Scene"), {
+    ssr: false
+})
+
+export default function Page() {
     return (
         <div className="pt-[150px]">
-            <Moon3D />
+            <div className="w-[500px] h-[500px] mx-auto">
+                <Moon3D />
+            </div>
         </div>
     );
 }

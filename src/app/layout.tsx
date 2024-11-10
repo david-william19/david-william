@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Image from "next/image";
 import NavbarComponent from "@/components/navbar";
 import { Open_Sans } from "next/font/google";
 import localFont from "next/font/local";
