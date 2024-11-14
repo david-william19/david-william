@@ -23,21 +23,26 @@ export default function NavbarComponent() {
       const location = date.toLocaleTimeString("en-US", {
         timeZone: "Asia/Jakarta",
       });
+      if(hours < 10 && minutes < 10) {
+        const time = `0${hours}:0${minutes}`;
+        return setTime(time);
+      }
       const time = `${hours}:${minutes}`;
       setTime(time);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
   return (
-    <nav className="w-full lg:pt-5 flex justify-between items-center fixed px-32">
+    <nav className="w-full lg:pt-5 flex items-center fixed px-32">
       <Image
         alt="logo-david"
         src={"/images/logo-david.png"}
         width={103}
         height={103}
+        className="mr-28"
       />
 
-      <ul className="rounded-full p-[8px] bg-[#9B95DE] bg-opacity-25 text-white flex h-fit list-none">
+      <ul className="rounded-full p-[8px] bg-[#9B95DE] bg-opacity-25 font-sans text-white flex h-fit w-fit list-none mx-auto">
         <li className="px-5 py-2.5">Home</li>
         <li className="px-5 py-2.5">Project</li>
         <li className="px-5 py-2.5">Posts</li>

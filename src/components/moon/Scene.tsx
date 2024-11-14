@@ -12,9 +12,10 @@ function Loader() {
 }
 
 export default function Scene() {
+
   return (
     <Canvas>
-      <directionalLight position={[-2, -8, 2]} intensity={4} />
+      <directionalLight position={[0, 8, 2]} intensity={4} />
       <Suspense fallback={<Loader />}>
           <Moon3D />
       </Suspense>

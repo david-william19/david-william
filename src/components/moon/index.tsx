@@ -1,34 +1,24 @@
 "use client"
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
-import {animated} from "@react-spring/three"
+import { useFrame } from '@react-three/fiber'
 
-export function Moon3D() {
-  const group = useRef<THREE.Group>(null)
-  const { nodes, materials } = useGLTF('moon.gltf')
-  // const {rotation} = useSpring<{rotation: [number, number, number]}>({
-  //   rotation: [Math.PI, Math.PI, 0],
-  //   config: {
-  //     mass: 1,
-  //     tension: 170,
-  //     friction: 12
-  //   }
-  // })
+export function Moon3D(props: any) {
+  const groupRef = useRef<THREE.Group>(null)
+  const { scene } = useGLTF('/moon-2.glb')
 
-  // animation
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime()
+    if (groupRef.current) {
+      groupRef.current.rotation.y = elapsedTime / 3.5
+    }
+  })
 
   return (
-    <group ref={group} dispose={null}>
-      <animated.mesh
-        castShadow
-        receiveShadow
-        scale={10}
-        position={[0, -5, 0]}
-        geometry={(nodes.Node1 as THREE.Mesh).geometry}
-        material={materials['Astronaut 02']}
-      />
+    <group {...props} ref={groupRef} dispose={null}>
+      <primitive position={[0, -0.2, 0]} object={scene} scale={6} />
     </group>
   )
 }
