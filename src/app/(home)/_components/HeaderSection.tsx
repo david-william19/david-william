@@ -1,8 +1,8 @@
 import Scene from "@/components/moon/Scene";
 
-export default function HeaderComponent() {
+export default function HeaderSection() {
     return (
-        <div className="flex w-5/6 justify-center items-center mx-auto relative h-[700px]">
+        <div className="flex w-full justify-center items-center mx-auto h-screen bg-stars">
             <span className="text-white text-[180px] font-thunder font-extrabold lg:absolute lg:left-[140px] lg:top-[80px]">
                 <p className="leading-none">FRONT END</p>
                 <p className="leading-none pl-20">DEVS.</p>

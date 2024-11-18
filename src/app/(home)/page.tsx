@@ -1,9 +1,11 @@
-import HeaderComponent from "./_components/Header";
+import HeaderSection from "./_components/HeaderSection";
+import PostSection from "./_components/PostSection";
 
 export default function Home() {
     return(
-        <div className="pt-[135px]">
-            <HeaderComponent />
+        <div className="bg-radial-space">
+            <HeaderSection />
+            <PostSection />
         </div>
     )
 }

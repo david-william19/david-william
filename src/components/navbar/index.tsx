@@ -8,21 +8,12 @@ import { fetchRecentlyPlayed } from "@/services/spotify";
 
 export default function NavbarComponent() {
   const [time, setTime] = useState("");
-  const {data} = useQuery({
-    queryKey: ["currently-playing"],
-    queryFn: fetchRecentlyPlayed,
-  });
-
-  console.log(data)
 
   useEffect(() => {
     const interval = setInterval(() => {
       const date = new Date();
       const hours = date.getHours();
       const minutes = date.getMinutes();
-      const location = date.toLocaleTimeString("en-US", {
-        timeZone: "Asia/Jakarta",
-      });
       if(hours < 10 && minutes < 10) {
         const time = `0${hours}:0${minutes}`;
         return setTime(time);
@@ -32,8 +23,9 @@ export default function NavbarComponent() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
   return (
-    <nav className="w-full lg:pt-5 flex items-center fixed px-32">
+    <nav className="w-full lg:pt-5 flex items-center fixed px-32 z-[1000]">
       <Image
         alt="logo-david"
         src={"/images/logo-david.png"}
@@ -42,7 +34,7 @@ export default function NavbarComponent() {
         className="mr-28"
       />
 
-      <ul className="rounded-full p-[8px] bg-[#9B95DE] bg-opacity-25 font-sans text-white flex h-fit w-fit list-none mx-auto">
+      <ul className="rounded-full px-[8px] bg-[#9B95DE] bg-opacity-25 font-sans text-white flex h-fit w-fit list-none mx-auto">
         <li className="px-5 py-2.5">Home</li>
         <li className="px-5 py-2.5">Project</li>
         <li className="px-5 py-2.5">Posts</li>
