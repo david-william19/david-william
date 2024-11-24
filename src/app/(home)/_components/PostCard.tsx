@@ -20,11 +20,11 @@ export default function PostCard(props: Post) {
                 transition: {
                     duration: 0.2
                 },
-                backgroundColor: "#1f1f1f",
+                backgroundColor: "rgba(255, 255, 255, 0.15)",
                 boxShadow: "0 0 10px 0 #fff"
             }}
             href={link} 
-            className="rounded-lg w-full"
+            className="rounded-lg w-full pb-5"
         >
             {/* image post */}
             <img 

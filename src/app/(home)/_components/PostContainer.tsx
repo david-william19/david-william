@@ -1,5 +1,6 @@
 import { getPosts, getTags } from "@/services/devtoApi";
 import PostCard from "./PostCard";
+import LabelPost from "./LabelPost";
 
 interface PostDevTo {
     title: string;
@@ -13,19 +14,6 @@ export default async function PostContainer() {
     const dataTags = await getTags();
 
     return (
-        <div>
-        <section className="flex gap-2.5 mb-5">
-            <div>
-                <h3 className="font-thunder font-bold text-white">Tags</h3>
-                <div className="flex gap-2.5">
-                    {
-                        dataTags.map((tag: any, index: number) => (
-                            <span key={index} className="font-thunder text-white">{tag.name}</span>
-                        ))
-                    }
-                </div>
-            </div>
-        </section>
         <div className="grid md:grid-cols-2 gap-[67px]">
             {
                 data.map((post: PostDevTo, index: number) => (
@@ -39,7 +27,6 @@ export default async function PostContainer() {
                     />
                 ))
             }
-        </div>
         </div>
     )
 }

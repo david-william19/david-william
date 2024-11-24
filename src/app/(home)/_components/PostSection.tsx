@@ -5,10 +5,7 @@ export default function PostSection() {
     <div className="w-full px-[150px]">
       <div className="w-fit">
       <section className="mb-3">
-        <h2 className="font-thunder font-extrabold text-white">POST</h2>
-        <p className="font-thunder text-white font-light">
-          here all my post that i wrote, check it if you interest!
-        </p>
+        <h2 className="font-thunder font-extrabold text-white text-[120px]">POST</h2>
       </section>
       <PostContainer />
       </div>
