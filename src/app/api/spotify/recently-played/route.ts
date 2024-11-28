@@ -1,32 +1,26 @@
-import { NextRequest, NextResponse } from 'next/server';
-import axios from 'axios';
+import axios from "axios";
+import { cookies } from "next/headers";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const access_token = searchParams.get('access_token');
+export async function GET() {
+  const cookieStore = cookies();
+  let accessToken = cookieStore.get("spotify_access_token")?.value;
 
-  if (!access_token) {
-    return NextResponse.json({ error: 'Access token is missing or invalid' }, { status: 400 });
+  if (!accessToken) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
   }
 
   try {
-    const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
-      headers: {
-        Authorization: `Bearer ${access_token}`
-      }
+    const response = await axios.get("https://api.spotify.com/v1/me/player/recently-played", {
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    if (response.status === 200 && response.data) {
-      return NextResponse.json({
-        track: response.data.item.name,
-        artist: response.data.item.artists.map((artist: { name: string }) => artist.name).join(', '),
-        link: response.data.item.external_urls.spotify
-      });
-    } else {
-      return NextResponse.json({ message: 'No track currently playing' }, { status: 204 });
-    }
+    return new Response(JSON.stringify(response.data), { status: 200 });
   } catch (error) {
-    console.error('Error fetching currently playing track:', error);
-    return NextResponse.json({ error: 'Failed to fetch currently playing track' }, { status: 500 });
+    if (axios.isAxiosError(error)) {
+      console.error("Error fetching recently played tracks:", error.response?.data || error.message);
+    } else {
+      console.error("Error fetching recently played tracks:", error);
+    }
+    return new Response("Error fetching tracks", { status: 500 });
   }
 }

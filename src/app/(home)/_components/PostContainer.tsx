@@ -1,6 +1,7 @@
 import { getPosts, getTags } from "@/services/devtoApi";
 import PostCard from "./PostCard";
 import LabelPost from "./LabelPost";
+import { AnimatePresence } from "motion/react";
 
 interface PostDevTo {
     title: string;
@@ -10,11 +11,11 @@ interface PostDevTo {
 }
 
 export default async function PostContainer() {
-    const data = await getPosts();
-    const dataTags = await getTags();
+    const data = await getPosts();  
 
     return (
-        <div className="grid md:grid-cols-2 gap-[67px]">
+        <AnimatePresence>
+        <div className="flex gap-[67px]">
             {
                 data.map((post: PostDevTo, index: number) => (
                     <PostCard 
@@ -28,5 +29,6 @@ export default async function PostContainer() {
                 ))
             }
         </div>
+        </AnimatePresence>
     )
 }
