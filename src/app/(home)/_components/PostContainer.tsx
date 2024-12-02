@@ -1,7 +1,10 @@
-import { getPosts, getTags } from "@/services/devtoApi";
+"use client"
+
+import { getPosts } from "@/services/devtoApi";
 import PostCard from "./PostCard";
-import LabelPost from "./LabelPost";
 import { AnimatePresence } from "motion/react";
+import {motion} from "framer-motion"
+import { useQuery } from "react-query";
 
 interface PostDevTo {
     title: string;
@@ -10,12 +13,39 @@ interface PostDevTo {
     link: string;
 }
 
-export default async function PostContainer() {
-    const data = await getPosts();  
+export default function PostContainer() {
+    const {data, isLoading} = useQuery('getPosts', getPosts);
+
+    const cardContainer = {
+        hidden: {
+            opacity: 0,
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.5,
+            }
+        }
+    }
+
+    const cardItem = {
+        hidden: {
+            marginBottom: '-15px',
+        },
+        show: {
+            marginBottom: 0
+        }
+    }
+    
+    if(isLoading) {
+        return (
+            <p>Loading..</p>
+        )
+    }
 
     return (
         <AnimatePresence>
-        <div className="flex gap-[67px]">
+        <motion.div variants={cardContainer} initial="hidden" animate="show" className="flex gap-[67px]">
             {
                 data.map((post: PostDevTo, index: number) => (
                     <PostCard 
@@ -25,10 +55,11 @@ export default async function PostContainer() {
                         image={post.cover_image}
                         alt={post.title}
                         link={post.link}
+                        variants={cardItem}
                     />
                 ))
             }
-        </div>
+        </motion.div>
         </AnimatePresence>
     )
 }

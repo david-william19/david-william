@@ -4,6 +4,8 @@ import NavbarComponent from "@/components/navbar";
 import { Open_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import Loading from "@/components/loading";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "David's Portfolio",
@@ -59,10 +61,10 @@ export default function RootLayout({
       <body
         className={`${openSans.variable} ${thunderFont.variable} antialiased`}
       >
-        <div className="w-full h-screen">
+        <div className="w-full bg-[#07131c] h-screen">
           <ReactQueryProvider>
-          <NavbarComponent />
-            {children}
+            <NavbarComponent />
+              {children}
           </ReactQueryProvider>
         </div>
       </body>

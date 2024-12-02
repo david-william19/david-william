@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "motion/react"
+import { motion, Variants } from "motion/react"
 
 interface Post {
     title: string;
@@ -8,6 +8,7 @@ interface Post {
     image: string;
     alt: string;
     link?: string;
+    variants?: Variants;
 }
 
 export default function PostCard(props: Post) {
@@ -23,6 +24,8 @@ export default function PostCard(props: Post) {
                 backgroundColor: "rgba(255, 255, 255, 0.15)",
                 boxShadow: "0 0 10px 0 #fff"
             }}
+            variants={props.variants}
+            animate
             href={link} 
             className="rounded-lg w-full pb-5"
         >
@@ -30,8 +33,9 @@ export default function PostCard(props: Post) {
             <img 
                 src={props.image}
                 alt={props.alt}
-                height={"300"}
-                className="rounded-lg"
+                height={500}
+                width={"100%"}
+                className="rounded-lg h-[200px] object-cover"
             />
             <div className="px-[15px] mt-[20px]">
                 {/* title post */}

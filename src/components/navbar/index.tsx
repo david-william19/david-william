@@ -3,9 +3,13 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import RecentPlayedModal from "../RecentPlayedModal";
+import Link from "next/link";
+import styles from "./navbar.module.css"
+import {motion} from "framer-motion"
 
 export default function NavbarComponent() {
   const [time, setTime] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,8 +26,29 @@ export default function NavbarComponent() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
-    <nav className="w-full lg:pt-5 flex items-center fixed px-32 z-[1000]">
+    <motion.nav className="w-full pt-2.5 flex items-center fixed px-32 z-[1000]"
+    animate={{
+      background: isScrolled ? "linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0))" : "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0))",
+    }}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
       <Image
         alt="logo-david"
         src={"/images/logo-david.png"}
@@ -32,12 +57,20 @@ export default function NavbarComponent() {
         className="mr-28"
       />
 
-      <ul className="rounded-full px-[8px] bg-[#c2c2c2] bg-opacity-25 font-sans text-white flex h-fit w-fit list-none mx-auto">
-        <li className="px-5 py-2.5">Home</li>
-        <li className="px-5 py-2.5">Project</li>
-        <li className="px-5 py-2.5">Posts</li>
-        <li className="px-5 py-2.5">About</li>
-      </ul>
+      <div className="rounded-full px-[8px] bg-[#c2c2c2]/50 font-sans text-white flex gap-5 py-1.5 list-none mx-auto">
+          <Link href={"/home"} className="hover:bg-[#dbdbdb]/25 transition-colors duration-150 ease-in-out px-2.5 py-1.5 rounded-full min-w-[100px] text-center">
+          Home
+          </Link>
+          <Link href={"/project"} className="hover:bg-[#dbdbdb]/25 transition-colors duration-150 ease-in-out px-2.5 py-1.5 rounded-full min-w-[100px] text-center">
+          Project
+          </Link>
+          <Link href={"/posts"} className="hover:bg-[#dbdbdb]/25 transition-colors duration-150 ease-in-out px-2.5 py-1.5 rounded-full min-w-[100px] text-center">
+          Posts
+          </Link>
+          <Link href={"/about"} className="hover:bg-[#dbdbdb]/25 transition-colors duration-150 ease-in-out px-2.5 py-1.5 rounded-full min-w-[100px] text-center">
+          About
+          </Link>
+      </div>
 
       <div className="flex gap-5">
         {/* time component */}
@@ -67,6 +100,6 @@ export default function NavbarComponent() {
         <RecentPlayedModal />
         {/* end spotify status */}
       </div>
-    </nav>
+    </motion.nav>
   );
 }
