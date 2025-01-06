@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import RecentPlayedModal from "../RecentPlayedModal";
 import Link from "next/link";
-import styles from "./navbar.module.css"
 import {motion} from "framer-motion"
 
 export default function NavbarComponent() {
@@ -16,11 +15,7 @@ export default function NavbarComponent() {
       const date = new Date();
       const hours = date.getHours();
       const minutes = date.getMinutes();
-      if(hours < 10 && minutes < 10) {
-        const time = `0${hours}:0${minutes}`;
-        return setTime(time);
-      }
-      const time = `${hours}:${minutes}`;
+      const time = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
       setTime(time);
     }, 1000);
     return () => clearInterval(interval);
@@ -57,7 +52,7 @@ export default function NavbarComponent() {
         className="mr-28"
       />
 
-      <div className="rounded-full px-[8px] bg-[#c2c2c2]/50 font-sans text-white flex gap-5 py-1.5 list-none mx-auto">
+      <div className="rounded-full backdrop-blur-sm px-[8px] bg-[#7d7d7d]/50 font-sans text-white flex gap-5 py-1.5 list-none mx-auto">
           <Link href={"/home"} className="hover:bg-[#dbdbdb]/25 transition-colors duration-150 ease-in-out px-2.5 py-1.5 rounded-full min-w-[100px] text-center">
           Home
           </Link>

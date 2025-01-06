@@ -4,8 +4,8 @@ import NavbarComponent from "@/components/navbar";
 import { Open_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
-import Loading from "@/components/loading";
-import { Suspense } from "react";
+import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "David's Portfolio",
@@ -63,8 +63,12 @@ export default function RootLayout({
       >
         <div className="w-full bg-[#07131c] h-screen">
           <ReactQueryProvider>
+            <SmoothScrollProvider>
+            <React.Fragment>
             <NavbarComponent />
-              {children}
+            {children}
+            </React.Fragment>
+            </SmoothScrollProvider>
           </ReactQueryProvider>
         </div>
       </body>

@@ -2,7 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['media2.dev.to'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media2.dev.to",
+      },
+      {
+        protocol: "https",
+        hostname: "i.scdn.co"
+      }
+    ]
   },
 };
 

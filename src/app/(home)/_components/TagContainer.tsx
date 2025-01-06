@@ -1,6 +1,11 @@
 import { getTags } from "@/services/devtoApi";
 import LabelPost from "./LabelPost";
 
+type TagsResponse = {
+    name: string,
+    id: number,
+}
+
 async function TagContainer() {
     const dataTags = await getTags();
 
@@ -10,8 +15,8 @@ async function TagContainer() {
                 <h3 className="font-thunder font-bold text-white mb-2.5">Tags</h3>
                 <div className="flex gap-2.5">
                     {
-                        dataTags.map((tag: any, index: number) => (
-                            <LabelPost title={tag.name} />
+                        dataTags.map((tag: TagsResponse, index: number) => (
+                            <LabelPost title={tag.name} key={index} />
                         ))
                     }
                 </div>

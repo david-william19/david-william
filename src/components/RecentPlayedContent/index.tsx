@@ -43,7 +43,7 @@ export  default function RecentPlayedContent() {
 
     return (    
         <div>
-      <img className="rounded-lg mb-4" src={track?.album.images[0].url} alt={track?.name} />
+      <Image width={500} height={500} className="rounded-lg mb-4" src={track?.album.images[0].url} alt={track?.name} />
       {track ? (
         <div className="text-[#1DB954]">
           <strong>{track.artists.map((artist) => artist.name).join(", ")}</strong>
@@ -61,8 +61,11 @@ export  default function RecentPlayedContent() {
           </Button>
         </div>
       ) : (
-        <Button onClick={handleRefreshToken} className="bg-[#1DB954] hover:bg-[#1ed760] text-black font-sans">Login with Spotify</Button>
-      )}
+        <div>
+          <p className="text-white font-sans text-sm text-center mb-5">Oops, i think something went wrong...</p>
+          <Button onClick={handleRefreshToken} className="bg-[#1DB954] hover:bg-[#1ed760] w-full text-black font-sans">Try again</Button>
+        </div>
+)}
     </div>
     )
 }
