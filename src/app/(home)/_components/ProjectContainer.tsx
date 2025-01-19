@@ -49,7 +49,10 @@ export default function ProjectContainer() {
           <p className="text-center font-thunder font-[500] text-white text-[32px]">
             Tech Stack
           </p>
-          <motion.div className="flex relative mt-2.5">
+          <p className="font-sans text-sm text-white font-light text-center">
+          technology that im using for build this app
+          </p>
+          <motion.div className="flex relative mt-2.5 justify-center gap-2.5">
             <TechStackTag>
             <svg
               role="img"

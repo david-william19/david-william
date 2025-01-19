@@ -51,8 +51,8 @@ export default function HeaderSection() {
                 }} className="leading-none pl-20 text-[180px] font-thunder font-extrabold">DEVS.</motion.p>
                 </div>
 
-                <div className="max-w-[33vw] mb-10">
-                    <p className="font-sans text-[#cccdcc] font-medium mb-5">Hi i’m david a frontend engineer with passion to creating enganging user experience and always curious about software development. i&apos;m using next JS, Node JS and Typescript for development daily driver</p>
+                <div className="max-w-[326px] mb-10">
+                    <p className="font-sans text-[#cccdcc] font-medium text-sm mb-5">Hi i’m david a frontend engineer with passion to creating enganging user experience and always curious about software development.</p>
                     <motion.button animate={{
                         transition: {
                             ease: "easeInOut"
