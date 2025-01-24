@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import NavbarComponent from "@/components/navbar";
 import { Open_Sans } from "next/font/google";
 import localFont from "next/font/local";
@@ -20,27 +20,27 @@ const openSans = Open_Sans({
 const thunderFont = localFont({
   src: [
     {
-      path: "./fonts/Thunder-ExtraBoldLC.woff",
+      path: "../fonts/Thunder-ExtraBoldLC.woff",
       weight: "800",
       style: "normal",
     },
     {
-      path: "./fonts/Thunder-LC.woff",
+      path: "../fonts/Thunder-LC.woff",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Thunder-LightLC.woff",
+      path: "../fonts/Thunder-LightLC.woff",
       weight: "300",
       style: "normal",
     },
     {
-      path: "./fonts/Thunder-MediumLC.woff",
+      path: "../fonts/Thunder-MediumLC.woff",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./fonts/Thunder-SemiBoldLC.woff",
+      path: "../fonts/Thunder-SemiBoldLC.woff",
       weight: "600",
       style: "normal",
     }

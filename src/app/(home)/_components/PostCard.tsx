@@ -1,4 +1,4 @@
-import { motion, Variants } from "motion/react"
+import { motion, useInView, Variants } from "motion/react"
 import TagLabel from "./GenrePostLabel";
 
 interface Post {
@@ -17,15 +17,6 @@ interface Post {
 
 export default function PostCard(props: Post) {
     const link = props.link ?? "https://dev.to/davidwilliam_";
-
-    const variantsCard = {
-        open: {
-            scale: 1
-        },
-        close: {
-            scale: 1.2
-        }
-    }
 
     const tagPostColorGenerator = (skill: string) => {
         switch(skill) {
@@ -55,13 +46,15 @@ export default function PostCard(props: Post) {
     }
 
     return (
-        <motion.a 
-            initial={{ width: props.isHovered ? "70%" : props.isAnyHovered ? "10%" : "30%" }}
-            animate={{ width: props.isHovered ? "70%" : props.isAnyHovered ? "10%" : "30%" }}
+        <motion.a
+            variants={props.variants}
             whileHover={{
-                width: "70%",
+                width: props.isHovered ? "70%" : "10%",
                 transformOrigin: 'left center',
                 boxShadow: "0 0 10px 0 #c7c7c7",
+            }}
+            initial={{
+                width: props.isAnyHovered && !props.isHovered ? '10%': '70%'
             }}
             transition={{
                 type: "spring",
@@ -70,7 +63,6 @@ export default function PostCard(props: Post) {
             }}
             onHoverStart={() => props.onHoverChange(props.id)}
             onHoverEnd={() => props.onHoverChange(null)}
-            variants={variantsCard}
             href={link} 
             className={`gap-1 h-[500px] p-5 rounded-lg overflow-hidden relative`}
             >
