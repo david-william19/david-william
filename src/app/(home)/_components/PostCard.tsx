@@ -68,11 +68,9 @@ export default function PostCard(props: Post) {
                 duration: 0.5,
                 ease: "easeInOut",
             }}
-            onHoverStart={() => props.onHoverChange(props.id)}
-            onHoverEnd={() => props.onHoverChange(null)}
             variants={variantsCard}
             href={link} 
-            className={`gap-1 h-[500px] p-5 rounded-lg overflow-hidden relative`}
+            className={`gap-1 min-h-[500px] p-5 rounded-lg overflow-hidden relative`}
             >
             {/* image post */}
                 <motion.img 

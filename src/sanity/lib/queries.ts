@@ -1,9 +1,7 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery, groq } from "next-sanity";
 
-export const PROJECTS_QUERY = defineQuery(`*[_type] == "project" && define(slug.current)[0...12]{
-    _id, title, slug, bannerImage, description
-    }`)
+export const PROJECTS_QUERY = defineQuery(`*[_type == "project"]`);
 
-export const PROJECT_QUERY = defineQuery(`*[_type == "project" && slug.current == $slug][0] {
-    _id, title, body, mainImage
-    }`)
+// export const PROJECT_QUERY = defineQuery(`*[_type == "project" && slug.current == $slug][0] {
+//     _id, title, body, mainImage
+//     }`)

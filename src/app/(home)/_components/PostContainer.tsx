@@ -3,9 +3,9 @@
 import { getPosts } from "@/services/devtoApi";
 import PostCard from "./PostCard";
 import { AnimatePresence } from "motion/react";
-import {motion} from "framer-motion"
+import {motion, useScroll} from "framer-motion"
 import { useQuery } from "react-query";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface PostDevTo {
     title: string;
@@ -40,8 +40,6 @@ export default function PostContainer() {
             <p>Loading..</p>
         )
     }
-
-    console.log(data)
 
     return (
         // <AnimatePresence>

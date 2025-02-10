@@ -6,6 +6,10 @@ export const contentType = defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'headerImage',
+            type: 'image'
+        }),
+        defineField({
             name: 'name',
             type: 'string'
         }),

@@ -2,21 +2,22 @@
 
 import Image from "next/image";
 import TechStackTag from "./TechStackTag";
-import {motion} from "framer-motion"
+import {motion, useScroll, useTransform} from "framer-motion"
+import { useRef } from "react";
 
 export default function ProjectContainer() {
-    const tagsContainerVariants= {
-        default: {
-            position: "relative",
-            left: "8px"
-        },
-        hovering: {
-            position: "relative"
-        }
-    }
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center"],
+  });
+
+  let rotateY = useTransform(scrollYProgress, [0, 1], [90, 0]);
+
   return (
-    <div className="flex justify-between gap-5">
-      <div className="text-white flex-1">
+    <div ref={containerRef} className=" mt-[10vh]">
+      <div className="flex justify-between items-center gap-5">
+      <motion.div style={{rotateY}} className="text-white flex-1">
         <span className="border border-white rounded-full w-fit py-[13px] px-[24px] flex">
           <Image
             src={"/icons/phone.svg"}
@@ -34,17 +35,16 @@ export default function ProjectContainer() {
           Lorem ipsum dolor sit amet consectetur. Est enim mus non elementum
           nulla mauris duis enim. Semper in aliquet sit duis nam tellus
         </p>
-      </div>
-      <div className="w-1/2 flex justify-center">
+      </motion.div>
+      <motion.div style={{rotateY}} className="w-1/2 flex justify-center">
         <Image
           src="/images/project/ppid-kemendag.png"
           alt="ppid-kemendag"
           width={280}
           height={300}
         />
-      </div>
-
-      <div className="self-end flex-1">
+      </motion.div>
+      <motion.div style={{rotateY}} className="self-end flex-1">
         <div className="bg-white bg-opacity-20 rounded-lg p-3 w-full">
           <p className="text-center font-thunder font-[500] text-white text-[32px]">
             Tech Stack
@@ -80,6 +80,7 @@ export default function ProjectContainer() {
             </TechStackTag>
           </motion.div>
         </div>
+      </motion.div>
       </div>
     </div>
   );

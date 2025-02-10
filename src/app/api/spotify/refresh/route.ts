@@ -15,8 +15,8 @@ export async function GET() {
       new URLSearchParams({
         grant_type: "refresh_token",
         refresh_token: refreshToken as string,
-        client_id: process.env.SPOTIFY_CLIENT_ID as string,,
-        client_secret: process.env.SPOTIFY_CLIENT_SECRET as string,,
+        client_id: process.env.SPOTIFY_CLIENT_ID as string,
+        client_secret: process.env.SPOTIFY_CLIENT_SECRET as string,
       }),
       {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },

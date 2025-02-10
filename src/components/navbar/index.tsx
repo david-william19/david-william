@@ -38,7 +38,7 @@ export default function NavbarComponent() {
   }, [])
 
   return (
-    <motion.nav className="w-full pt-2.5 flex items-center fixed px-32 z-[1000]"
+    <motion.nav className="w-full pt-2.5 flex items-center fixed top-0 px-32 z-[1000]"
     animate={{
       background: isScrolled ? "linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0))" : "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0))",
     }}

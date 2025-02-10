@@ -1,3 +1,4 @@
+import { m } from "motion/react";
 import { defineField, defineType } from "sanity";
 
 export const projectType = defineType({
@@ -5,6 +6,14 @@ export const projectType = defineType({
     title: 'Project',
     type: 'document',
     fields: [
+        defineField({
+            name: "headerImage",
+            type: "image",
+        }),
+        defineField({
+            name: "urlProject",
+            type: "url",
+        }),
         defineField({
             name: "name",
             type: "string",
@@ -20,9 +29,24 @@ export const projectType = defineType({
         defineField({
             name: "techStack",
             type: "array",
-            of: [{
-                type: 'block'
-            }]
+            title: "tags for tech stack",
+            of: [
+               {
+                type: "object",
+                fields: [
+                    {
+                        type: "string", name: "label"
+                    },
+                    {
+                        type: "string", name: "value"
+                    }
+                ]
+               }
+            ]
+        }),
+        defineField({
+            name: "imageGallery",
+            type: "image",
         })
     ]
 })
