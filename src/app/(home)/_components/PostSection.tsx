@@ -23,7 +23,7 @@ export default function PostSection() {
         </motion.h2>
 
         <p className="text-white mx-auto text-center text-xl max-w-[500px] font-thunder mb-10">all post that i created is basically from library or framework that i learned and also basically comes from my experiences.</p>
-        <PostContainer />
+        <PostContainer ref={containerRef} />
       {/* </div> */}
     </section>
   );

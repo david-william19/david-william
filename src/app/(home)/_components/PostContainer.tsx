@@ -15,20 +15,26 @@ interface PostDevTo {
     tag_list: string[]
 }
 
-export default function PostContainer() {
+export default function PostContainer({ref}: {ref: any}) {
     const {data, isLoading} = useQuery('getPosts', getPosts);
+
     const [id, setId] = useState<number | null>(0)
 
-    const cardContainer = {
+    const variantsCard = {
         hidden: {
             opacity: 0,
+            width: 0,
+            x: '200px'
         },
         show: {
             opacity: 1,
+            // width: "100%",
+            x: 0,
             transition: {
-                staggerChildren: 0.5,
+                staggerChildren: 0.8,
+                delayChildren: 0.2,
             }
-        }
+        },
     }
 
     const handleHoverChange = (id: number | null) => {
@@ -42,8 +48,7 @@ export default function PostContainer() {
     }
 
     return (
-        // <AnimatePresence>
-        <motion.div variants={cardContainer} initial="hidden" animate="show" className="flex items-center gap-2.5 w-full">
+        <motion.div initial="hidden" whileInView="show" className="flex items-center gap-2.5 w-full">
             {
                 data.map((post: PostDevTo, index: number) => (
                     <PostCard 
@@ -57,6 +62,7 @@ export default function PostContainer() {
                         tags={post.tag_list}
                         isHovered={index === id}
                         isAnyHovered={id !== null}
+                        variants={variantsCard}
                         onHoverChange={handleHoverChange}
                     />
                 ))
