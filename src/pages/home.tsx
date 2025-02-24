@@ -105,6 +105,7 @@ const Heading1 = styled.h1`
 
 const ImageAvatar = styled(LazyLoadImage)`
   width: 200px;
+  object-fit: cover;
   object-position: center -60px;
   margin: 0 auto;
 `;
