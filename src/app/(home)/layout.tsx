@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import NavbarComponent from "@/components/navbar";
 import { Open_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
@@ -65,7 +64,6 @@ export default function RootLayout({
           <ReactQueryProvider>
             <SmoothScrollProvider>
             <React.Fragment>
-            <NavbarComponent />
             {children}
             </React.Fragment>
             </SmoothScrollProvider>

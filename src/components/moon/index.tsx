@@ -1,60 +1,49 @@
-"use client"
-
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber';
+import { useSpring, animated } from '@react-spring/three';
 
 export function Moon3D(props: any) {
-  const groupRef = useRef<THREE.Group>(null)
-  const { nodes, materials } = useGLTF('/moon-2.glb') as any;
+  const groupRef = useRef<THREE.Mesh>(null)
+  const {materials} = useGLTF('/moon.glb');
+  const [colorMap, displacementMap] = useLoader(THREE.TextureLoader, [
+    '/color.jpg',
+    '/texture.jpg',
+  ])
+
+  const [spring, api] = useSpring(() => ({
+    scale: [0, 0, 0],
+    config: { tension: 170, friction: 26 },
+  }));
 
   useEffect(() => {
-    if (nodes.Node1.geometry) {
-      nodes.Node1.geometry.computeBoundingBox();
-      const boundingBox = nodes.Node1.geometry.boundingBox;
-      const center = new THREE.Vector3();
-      boundingBox.getCenter(center);
-      nodes.Node1.geometry.translate(-center.x, -center.y, -center.z);
-    }
-  }, [nodes]);
+    api.start({ scale: [3, 3, 3], delay: 350 });
+  }, [api]);
 
-  useFrame(({ clock }) => {
-    const elapsedTime = clock.getElapsedTime()
-    if (groupRef.current) {
-      groupRef.current.rotation.y = elapsedTime / 3.5
+  useEffect(() => {
 
-      // Animate scale with easing
-      const scale = Math.min(elapsedTime / 2, 1)
-      const easedScale = easeInOutQuad(scale) // Apply easing function
-      groupRef.current.scale.set(easedScale, easedScale, easedScale)
-    }
+  }, [])
+  useFrame(({clock}) => {
+    groupRef.current!.rotation.y = clock.elapsedTime / 4
+    // groupRef.current!.
   })
 
-  // Easing function
-  function easeInOutQuad(t: number) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-  }
-
   return (
-    <group {...props} ref={groupRef} dispose={null}>
-      <mesh
+    <animated.group scale={spring.scale} {...props} dispose={null}>
+      <mesh  
         castShadow
         receiveShadow
-        geometry={nodes.Node1.geometry}
-        material={materials['Astronaut 02']}
-        position={[0, 0, 0]}
+        material={materials.moon}
+        ref={groupRef}
       >
-        <meshStandardMaterial
-          attach="material"
-          {...materials['Astronaut 02']}
-          emissive={new THREE.Color(0x000000)}
-          metalness={0.5}
-          roughness={0.5}
-        />
+        <sphereGeometry args={[1, 128, 128]} />
+        <meshStandardMaterial displacementScale={0.002} roughness={0.9} map={colorMap} bumpMap={colorMap} displacementMap={displacementMap} />
       </mesh>
-    </group>
+      <pointLight intensity={100} distance={1} color={'#ffffff'} />
+      <directionalLight intensity={2.5} position={[1, 1, 1]} />
+    </animated.group>
   )
 }
 
-useGLTF.preload('/moon.gltf')
+useGLTF.preload('/moon.glb')

@@ -48,20 +48,27 @@ export default function PostCard(props: Post) {
     return (
         <motion.a
             variants={props.variants}
-            whileHover={{
-                width: props.isHovered ? "70%" : "10%",
-                transformOrigin: 'left center',
-                boxShadow: "0 0 10px 0 #c7c7c7",
-            }}
             initial={{
-                width: props.isAnyHovered && !props.isHovered ? '10%': '70%'
+                width: "100%",
+                opacity: 0,
+                y: "-10px",
             }}
             transition={{
                 type: "spring",
                 duration: 0.5,
                 ease: "easeInOut",
+                y: "0px",
+                opacity: 1,
             }}
-            variants={variantsCard}
+            whileHover={{
+                scale: 1.05,
+                width: "105%",
+                transition: {
+                    type: "spring",
+                    duration: 0.5,
+                    ease: "easeInOut",
+                }
+            }}
             href={link} 
             className={`gap-1 min-h-[500px] p-5 rounded-lg overflow-hidden relative`}
             >
@@ -74,10 +81,7 @@ export default function PostCard(props: Post) {
                     className={`rounded-lg object-cover absolute top-0 left-0 h-full w-full`}
                 />
             {/* gradient layer */}
-                <motion.div 
-                    // initial={{ opacity: 0 }}
-                    // whileHover={{ opacity: 1 }}
-                    // transition={{ duration: 0.5 }}
+                <motion.div
                     className="absolute z-10 inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none"
                 />
                 <div className="absolute z-20 bottom-5 left-5 w-[550px]">

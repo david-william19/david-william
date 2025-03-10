@@ -2,10 +2,9 @@
 
 import { getPosts } from "@/services/devtoApi";
 import PostCard from "./PostCard";
-import { AnimatePresence } from "motion/react";
-import {motion, useScroll} from "framer-motion"
+import {motion} from "framer-motion"
 import { useQuery } from "react-query";
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useState } from "react";
 
 interface PostDevTo {
     title: string;
@@ -15,7 +14,7 @@ interface PostDevTo {
     tag_list: string[]
 }
 
-export default function PostContainer({ref}: {ref: any}) {
+export default function PostContainer({ref}: {ref: RefObject<HTMLDivElement>}) {
     const {data, isLoading} = useQuery('getPosts', getPosts);
 
     const [id, setId] = useState<number | null>(0)
@@ -48,7 +47,7 @@ export default function PostContainer({ref}: {ref: any}) {
     }
 
     return (
-        <motion.div initial="hidden" whileInView="show" className="flex items-center gap-2.5 w-full">
+        <motion.div initial="hidden" whileInView="show" className="flex items-center gap-2.5 max-w-[1150px] mx-auto" ref={ref}>
             {
                 data.map((post: PostDevTo, index: number) => (
                     <PostCard 
