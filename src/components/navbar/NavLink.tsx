@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {motion} from "framer-motion";
+import {motion} from "motion/react";
 
 export default function NavLink({isScrolled}: {isScrolled: boolean}) {
     //className="rounded-full flex-2 backdrop-blur-sm px-[8px] bg-[#7d7d7d]/50 font-sans text-white flex gap-5 py-1.5 list-none mx-auto"
@@ -9,7 +9,7 @@ export default function NavLink({isScrolled}: {isScrolled: boolean}) {
         <motion.div
             className="rounded-full flex-2 backdrop-blur-sm font-sans text-white gap-[50px] flex py-2.5 px-5 list-none mx-auto"
             animate={{
-                background: isScrolled ? "rgba(30, 62, 98, 0.2)" : "transparent",
+                background: isScrolled ? "#1dcd9e1c" : "transparent",
                 gap: isScrolled ? "30px" : "50px",
             }}
         >

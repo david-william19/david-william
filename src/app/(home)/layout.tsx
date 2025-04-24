@@ -46,12 +46,7 @@ const thunderFont = localFont({
   ],
   variable: "--font-thunder"
 })
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en">
       <head>

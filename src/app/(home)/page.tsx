@@ -1,44 +1,23 @@
-"use client";
 
 import NavbarComponent from "@/components/navbar";
 import HeaderSection from "./_components/HeaderSection";
-import PostSection from "./_components/PostSection";
-import ProjectSection from "./_components/ProjectSection";
+import PostSection from "./_components/Posts/PostSection";
+import ProjectSection from "./_components/Projects/ProjectSection";
 import client from "@/sanity/lib/client";
 import { PROJECTS_QUERY } from "@/sanity/lib/queries";
-import React, { useEffect, useState } from "react";
-import { AnimatePresence } from "motion/react";
-import LoadingScreen from "@/components/loading";
+import { Project } from "@/types/Project"
 
-export default function Home({ projects }: { projects: any }) {
-  const [isLoaded, setIsLoaded] = useState(true);
+export default async function Home() {
+ const projects = await client.fetch<Project[]>(PROJECTS_QUERY);
 
-  useEffect(() => {
-    if (document !== undefined) {
-      document.addEventListener("load", () => {
-        setIsLoaded(false);
-      });
-    }
-  }, []);
-
-  return (
-    <div>
-      <AnimatePresence>{isLoaded && <LoadingScreen />}</AnimatePresence>
+return (
+    <div> 
       <div className="bg-[#050505]">
         <NavbarComponent />
         <HeaderSection />
         <PostSection />
-        <ProjectSection />
+        <ProjectSection projects={projects} />
       </div>
     </div>
   );
-}
-
-export async function getServersideProps() {
-  const projects = await client.fetch(PROJECTS_QUERY);
-  return {
-    props: {
-      projects,
-    },
-  };
 }

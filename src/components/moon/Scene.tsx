@@ -6,8 +6,8 @@ export default function Scene() {
 
   return (
     <Canvas style={{
-      width: "400px",
-      height: "400px",
+      width: "350px",
+      height: "350px",
       marginInline: "auto",
     }}>
       <Suspense fallback={null}>

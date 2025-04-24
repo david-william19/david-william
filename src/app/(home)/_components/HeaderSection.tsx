@@ -2,100 +2,144 @@
 
 import Scene from "@/components/moon/Scene";
 import StaggerText from "@/components/staggerText";
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "motion/react";
+import { CSSProperties, useRef, useState } from "react";
+import SocmedContainer from "./SocmedContainer";
+import { SocialMedia } from "@/types/SocialMedia";
+
+const socialMedia: SocialMedia[] = [
+  {
+    name: "twitter",
+    link: "https://x.com/whoareeuuu_",
+    icon: "twitter",
+  },
+  {
+    name: "linkedin",
+    link: "https://x.com/whoareeuuu_",
+    icon: "linkedin",
+  },
+  {
+    name: "gmail",
+    link: "https://x.com/whoareeuuu_",
+    icon: "gmail",
+  },
+  {
+    name: "github",
+    link: "https://x.com/whoareeuuu_",
+    icon: "github",
+  },
+];
 
 export default function HeaderSection() {
   const ref = useRef<HTMLDivElement>(null);
+  const [isHideSocmed, setIsHideSocmed] = useState<boolean>(false);
+
+  const handleSlideSosmed = () => {
+    setIsHideSocmed(!isHideSocmed);
+  };
+
+  const closeIconVariants = {
+    hidden: {
+      pathLength: 0,
+      opacity: 0
+    },
+    visible: {
+      pathLength: 1,
+      opacity: 1,
+      transition: {
+        pathLength: { type: "spring", duration: 0.5, bounce: 0 },
+        opacity: { duration: 0.01 },
+      },
+    }
+  }
+
   return (
     <div
       ref={ref}
       className="w-full container relative pt-24 mx-auto z-0 h-screen bg-[#050505]"
     >
       {/* front end devs container */}
-      <motion.div
-        animate={{
-          color: "#FF6500",
-        }}
-        className="leading-none text-[11.25rem] text-left font-thunder font-bold z-10"
-      >
-        <StaggerText text="FRONTEND" /><br />
-        <StaggerText text="DEVELOPERS" />
+      <motion.div className="leading-none text-center mt-5 font-bold z-10 w-fit mx-auto">
+        {/* <StaggerText text="FRONTEND" className="text-[#FFA955]" prefix="1" />
+        <br />
+        <StaggerText text="DEVELOPERS" className="text-[#FFA955]" prefix="2" /> */}
+        <h1 className="text-[#1DCD9F] font-thunder font-semibold text-[200px]">FRONTEND ENGINEER</h1>
+
+        <div className="flex justify-between">
+          <p className="max-w-[120px] font-thin text-[18px] text-left leading-tight text-gray-400"><span className="font-bold text-white">David</span> William da costa</p>
+          <p className="max-w-[210px] font-thin text-[12px] text-right leading-tight text-gray-400">
+            <span className="text-white font-semibold">Design</span> and <span className="text-white font-semibold">Code</span> that works together to achieve the goals of application.
+          </p>
+        </div>
       </motion.div>
       {/* moon object container*/}
-      <div className="flex-1 w-full h-full absolute top-0 z-0 flex items-center justify-center left-0 z-[0]">
+      <div className="flex-1 w-full h-full absolute top-0 z-0 flex items-center justify-center left-0">
         <Scene />
       </div>
-      <div className="mb-24 absolute bottom-0 right-0">
-        <p className="text-white text-justify text-lg font-normal z-10 max-w-[620px] mt-4">
+      <div className="absolute bottom-20 w-full flex flex-col items-center">
+        {/* <p className="text-white text-center text-lg font-normal z-10 max-w-[70vw] mt-4">
           Hi, I'm David, a frontend developer with 3 years of experience in web
           and cross-platform mobile development. I enjoy sharing insights
-          through articles. let's connect! 🚀
-        </p>
-        <div className="flex gap-2.5 mt-5">
-          <a target="_blank" href="https://linkedin.com/in/davidwilliamdacosta">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="white"
-              viewBox="0 0 100 100"
-              className="w-8 h-8"
-              id="linkedin"
-            >
-              <path d="M87.877 5.608H11.174c-3.673 0-6.65 2.886-6.65 6.448v77.101c0 3.562 2.978 6.451 6.65 6.451h76.703c3.673 0 6.646-2.89 6.646-6.451V12.056c0-3.561-2.973-6.448-6.646-6.448zM31.809 80.944H18.211V40.31h13.598v40.634zm-6.798-46.185h-.091c-4.56 0-7.516-3.119-7.516-7.023 0-3.983 3.043-7.017 7.693-7.017 4.651 0 7.512 3.033 7.602 7.017 0 3.905-2.95 7.023-7.688 7.023zm55.816 46.185H67.233v-21.74c0-5.464-1.97-9.191-6.886-9.191-3.761 0-5.993 2.515-6.973 4.942-.364.868-.453 2.08-.453 3.292v22.696H39.329s.178-36.823 0-40.634h13.593v5.761c1.805-2.768 5.029-6.717 12.249-6.717 8.947 0 15.656 5.804 15.656 18.291v23.3zM52.834 46.199c.024-.038.056-.084.088-.128v.128h-.088z"></path>
-            </svg>
-          </a>
-          <a target="_blank" href="https://x.com/whoooareuuu">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-8 h-8"
-              fill="none"
-              viewBox="0 0 512 512"
-              id="twitter"
-            >
-              <g clip-path="url(#clip0_84_15697)">
-                <rect width="512" height="512" fill="#000" rx="60"></rect>
-                <path
-                  fill="#fff"
-                  d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_84_15697">
-                  <rect width="512" height="512" fill="#fff"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </a>
-          <a target="_blank" href="https://linkedin.com/in/davidwilliamdacosta">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 64 64"
-              className="w-8 h-8"
-              id="github"
-            >
-              <path
-                fill-rule="evenodd"
-                d="m60,12c0-4.42-3.58-8-8-8H12c-4.42,0-8,3.58-8,8v40c0,4.42,3.58,8,8,8h40c4.42,0,8-3.58,8-8V12h0Z"
-              ></path>
-              <path
-                fill="#fff"
-                fill-rule="evenodd"
-                d="m26.73,47.67c0,1.1-.01,2.3-.01,3.4,0,.26-.13.51-.34.67-.21.16-.49.2-.74.13-8.4-2.7-14.49-10.58-14.49-19.87,0-11.51,9.34-20.85,20.85-20.85s20.85,9.34,20.85,20.85c0,9.28-6.08,17.15-14.46,19.85-.25.08-.53.03-.74-.13-.21-.16-.34-.4-.34-.67-.02-2.45-.03-5.34-.03-6.65s-1.28-2.39-1.28-2.39c0,0,9.45-1.16,9.45-9.34,0-5.19-2.06-6.94-2.06-6.94.44-1.86.38-3.63-.1-5.31-.07-.24-.31-.4-.56-.38-2.01.18-3.85.91-5.52,2.24,0,0-2.95-.81-5.2-.81h0c-2.25,0-5.2.81-5.2.81-1.67-1.32-3.52-2.06-5.52-2.24-.25-.02-.49.14-.56.38-.48,1.68-.54,3.45-.11,5.31,0,0-2.05,1.75-2.05,6.94,0,8.18,9.45,9.34,9.45,9.34,0,0-1.28,1.08-1.28,2.39v.3c-.72.26-1.7.5-2.8.43-2.99-.2-3.39-3.42-4.62-3.94-.9-.38-1.78-.43-2.45-.37-.2.02-.36.16-.41.35-.05.19.02.39.18.51.81.55,1.89,1.33,2.19,1.9.81,1.52,2.06,3.93,3.67,4.19,1.96.32,3.36.13,4.25-.12h0Z"
-              ></path>
-            </svg>
-          </a>
-          <a target="_blank" href="https://linkedin.com/in/davidwilliamdacosta">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" id="gmail">
-            <path fill="#ea4435" d="M16.58,19.1068l-12.69-8.0757A3,3,0,0,1,7.1109,5.97l9.31,5.9243L24.78,6.0428A3,3,0,0,1,28.22,10.9579Z"></path>
-            <path fill="#00ac47" d="M25.5,5.5h4a0,0,0,0,1,0,0v18a3,3,0,0,1-3,3h0a3,3,0,0,1-3-3V7.5a2,2,0,0,1,2-2Z" transform="rotate(180 26.5 16)"></path>
-            <path fill="#ffba00" d="M29.4562,8.0656c-.0088-.06-.0081-.1213-.0206-.1812-.0192-.0918-.0549-.1766-.0823-.2652a2.9312,2.9312,0,0,0-.0958-.2993c-.02-.0475-.0508-.0892-.0735-.1354A2.9838,2.9838,0,0,0,28.9686,6.8c-.04-.0581-.09-.1076-.1342-.1626a3.0282,3.0282,0,0,0-.2455-.2849c-.0665-.0647-.1423-.1188-.2146-.1771a3.02,3.02,0,0,0-.24-.1857c-.0793-.0518-.1661-.0917-.25-.1359-.0884-.0461-.175-.0963-.267-.1331-.0889-.0358-.1837-.0586-.2766-.0859s-.1853-.06-.2807-.0777a3.0543,3.0543,0,0,0-.357-.036c-.0759-.0053-.1511-.0186-.2273-.018a2.9778,2.9778,0,0,0-.4219.0425c-.0563.0084-.113.0077-.1689.0193a33.211,33.211,0,0,0-.5645.178c-.0515.022-.0966.0547-.1465.0795A2.901,2.901,0,0,0,23.5,8.5v5.762l4.72-3.3043a2.8878,2.8878,0,0,0,1.2359-2.8923Z"></path>
-            <path fill="#4285f4" d="M5.5,5.5h0a3,3,0,0,1,3,3v18a0,0,0,0,1,0,0h-4a2,2,0,0,1-2-2V8.5a3,3,0,0,1,3-3Z"></path>
-            <path fill="#c52528" d="M2.5439,8.0656c.0088-.06.0081-.1213.0206-.1812.0192-.0918.0549-.1766.0823-.2652A2.9312,2.9312,0,0,1,2.7426,7.32c.02-.0475.0508-.0892.0736-.1354A2.9719,2.9719,0,0,1,3.0316,6.8c.04-.0581.09-.1076.1342-.1626a3.0272,3.0272,0,0,1,.2454-.2849c.0665-.0647.1423-.1188.2147-.1771a3.0005,3.0005,0,0,1,.24-.1857c.0793-.0518.1661-.0917.25-.1359A2.9747,2.9747,0,0,1,4.3829,5.72c.089-.0358.1838-.0586.2766-.0859s.1853-.06.2807-.0777a3.0565,3.0565,0,0,1,.357-.036c.076-.0053.1511-.0186.2273-.018a2.9763,2.9763,0,0,1,.4219.0425c.0563.0084.113.0077.169.0193a2.9056,2.9056,0,0,1,.286.0888,2.9157,2.9157,0,0,1,.2785.0892c.0514.022.0965.0547.1465.0795a2.9745,2.9745,0,0,1,.3742.21A2.9943,2.9943,0,0,1,8.5,8.5v5.762L3.78,10.9579A2.8891,2.8891,0,0,1,2.5439,8.0656Z"></path>
-          </svg>
-          </a>
+          through articles. hit button below for open conversation
+        </p> */}
+        <div className="flex gap-5 mt-5 justify-center items-center">
+          <motion.button
+            animate={{
+              width: isHideSocmed ? 50 : 150,
+              borderRadius: isHideSocmed ? 100 : 10,
+              opacity: 1,
+              transition: {
+                duration: 0.1,
+              },
+            }}
+            onClick={handleSlideSosmed}
+            className="bg-[#1DCD9F] text-black font-bold text-md h-[50px] w-[150px] rounded-lg z-10"
+          >
+            {isHideSocmed ? (
+              <span className="text-black">
+                <motion.svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mx-auto"
+                  width="30"
+                  height="30"
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <motion.line 
+                    x1="8"
+                    y1="8"
+                    x2="22"
+                    y2="22"
+                    stroke="#000"
+                    variants={closeIconVariants}
+                    custom={2}
+                    style={shape}
+                  />
+                  <motion.line 
+                    x1="8"
+                    y1="22"
+                    x2="22"
+                    y2="8"
+                    stroke="#000"
+                    variants={closeIconVariants}
+                    custom={2}
+                    style={shape}
+                  />
+                </motion.svg>
+              </span>
+            ) : (
+              <p className="w-full truncate">Let's Talk 🚀</p>
+            )}
+          </motion.button>
+          <SocmedContainer isHide={isHideSocmed} socialMedia={socialMedia} />
         </div>
       </div>
     </div>
   );
+}
+
+const shape: CSSProperties = {
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  fill: "transparent"
 }

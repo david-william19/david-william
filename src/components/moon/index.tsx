@@ -25,7 +25,7 @@ export function Moon3D(props: any) {
 
   }, [])
   useFrame(({clock}) => {
-    groupRef.current!.rotation.y = clock.elapsedTime / 4
+    groupRef.current!.rotation.y = clock.elapsedTime / 7
     // groupRef.current!.
   })
 

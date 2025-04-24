@@ -2,7 +2,6 @@ import { motion, useInView, Variants } from "motion/react"
 import TagLabel from "./GenrePostLabel";
 
 interface Post {
-    id: number;
     title: string;
     description: string;
     image: string;
@@ -10,9 +9,6 @@ interface Post {
     link?: string;
     tags: string[];
     variants?: Variants;
-    onHoverChange: (id: number | null) => void;
-    isAnyHovered: boolean;
-    isHovered: boolean;
 }
 
 export default function PostCard(props: Post) {
@@ -46,32 +42,9 @@ export default function PostCard(props: Post) {
     }
 
     return (
-        <motion.a
-            variants={props.variants}
-            initial={{
-                width: "100%",
-                opacity: 0,
-                y: "-10px",
-            }}
-            transition={{
-                type: "spring",
-                duration: 0.5,
-                ease: "easeInOut",
-                y: "0px",
-                opacity: 1,
-            }}
-            whileHover={{
-                scale: 1.05,
-                width: "105%",
-                transition: {
-                    type: "spring",
-                    duration: 0.5,
-                    ease: "easeInOut",
-                }
-            }}
-            href={link} 
-            className={`gap-1 min-h-[500px] p-5 rounded-lg overflow-hidden relative`}
-            >
+        <a
+            href={link}
+	>
             {/* image post */}
                 <motion.img 
                     src={props.image}
@@ -95,6 +68,6 @@ export default function PostCard(props: Post) {
                     <h2 className="font-thunder text-white text-[40px] font-extrabold">{props.title}</h2>
                     <p className="font-thunder font-light text-white text-[18px]">{props.description}</p>
                 </div>
-        </motion.a>
+        </a>
     )
 }

@@ -11,6 +11,10 @@ export const projectType = defineType({
             type: "image",
         }),
         defineField({
+            name: "deviceType",
+            type: "string"
+        }),
+        defineField({
             name: "urlProject",
             type: "url",
         }),
