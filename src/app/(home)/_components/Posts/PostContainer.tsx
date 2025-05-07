@@ -63,7 +63,7 @@ export default function PostContainer() {
         <motion.div variants={containerVariants} viewport={{
             once: true,
             margin: "-50px"
-        }} initial="hidden" whileInView="show" className="flex items-center gap-2.5 max-w-[1200px] mx-auto">
+        }} initial="hidden" whileInView="show" className="flex items-center gap-2.5 max-w-1/2 justify-center h-fit mx-auto">
             {
                 data.map((post: PostDevTo, index: number) => (
                 <motion.div 
@@ -71,7 +71,8 @@ export default function PostContainer() {
                     variants={cardVariants} 
                     whileHover={{
                         scale: 1.05,
-			width: "800px",
+			            width: "800px",
+                        zIndex: 10,
                         transition: {
                             duration: 0.5
                         }

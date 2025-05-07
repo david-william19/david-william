@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
-import { useFrame, useLoader } from '@react-three/fiber';
+import { GroupProps, useFrame, useLoader } from '@react-three/fiber';
 import { useSpring, animated } from '@react-spring/three';
 
-export function Moon3D(props: any) {
+export function Moon3D(props: GroupProps) {
   const groupRef = useRef<THREE.Mesh>(null)
   const {materials} = useGLTF('/moon.glb');
   const [colorMap, displacementMap] = useLoader(THREE.TextureLoader, [
@@ -13,20 +13,16 @@ export function Moon3D(props: any) {
   ])
 
   const [spring, api] = useSpring(() => ({
-    scale: [0, 0, 0],
-    config: { tension: 170, friction: 26 },
+    scale: [2.9, 2.9, 2.9],
+    config: { mass: 1, tension: 100, friction: 1, precision: 0.01, duration: 800 },
   }));
 
-  useEffect(() => {
-    api.start({ scale: [3, 3, 3], delay: 350 });
+  useLayoutEffect(() => {
+    api.start({ scale: [3, 3, 3], delay: 2500 });
   }, [api]);
 
-  useEffect(() => {
-
-  }, [])
   useFrame(({clock}) => {
-    groupRef.current!.rotation.y = clock.elapsedTime / 7
-    // groupRef.current!.
+    groupRef.current!.rotation.y = clock.elapsedTime / 10
   })
 
   return (

@@ -13,13 +13,13 @@ export default function StaggerText(props: StaggerTextProps) {
   const containerVariants = {
     start: {
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: .09,
         ease: "easeInOut",
       },
     },
     stop: {
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: .09,
         ease: "easeInOut",
       },
     },
@@ -27,12 +27,14 @@ export default function StaggerText(props: StaggerTextProps) {
 
   const letterVariants = {
     start: {
-      y: 150,
+      y: 10,
+      opacity: 0,
     },
     stop: {
       y: 0,
+      opacity: 1,
       transition: {
-        duration: 0.4,
+        duration: .5,
         ease: "easeInOut"
       },
     },

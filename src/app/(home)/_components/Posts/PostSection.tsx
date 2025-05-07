@@ -37,7 +37,7 @@ export default function PostSection() {
   }
 
   return (
-    <section className="w-full px-[150px] h-screen pt-5 pb-20">
+    <section className="w-full container mx-auto pt-5 pb-20">
         <motion.h1 
           variants={titlePostVariants}
           initial="hidden"
