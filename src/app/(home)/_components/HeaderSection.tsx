@@ -6,7 +6,6 @@ import { motion } from "motion/react";
 import { CSSProperties, useRef, useState } from "react";
 import SocmedContainer from "./SocmedContainer";
 import { SocialMedia } from "@/types/SocialMedia";
-import StarScene from "@/components/star";
 
 const socialMedia: SocialMedia[] = [
   {
@@ -34,10 +33,6 @@ const socialMedia: SocialMedia[] = [
 export default function HeaderSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [isHideSocmed, setIsHideSocmed] = useState<boolean>(false);
-  
-  const handleSlideSosmed = () => {
-    setIsHideSocmed(!isHideSocmed);
-  };
 
   const closeIconVariants = {
     hidden: {
@@ -91,62 +86,56 @@ export default function HeaderSection() {
         <Scene />
       </motion.div>
       <div className="absolute bottom-20 w-full flex flex-col items-center">
-        <div className="flex gap-5 mt-5 justify-center items-center">
-          <motion.button
-            initial={{ opacity: 0, scale: .98 }}
-            animate={{ opacity: 1, scale: 1, transition: {
-              duration: 0.8,
-              ease: "easeInOut",
-              delay: 3.5,
-            } }}
-            onClick={handleSlideSosmed}
-            className="bg-[#1DCD9F] text-black font-bold text-md h-[50px] w-[150px] rounded-lg z-10"
+        <div className="flex gap-5 mt-5 min-w-[300px] items-center">
+          <motion.button 
+            initial={false}
+            animate={{
+              x: isHideSocmed ? 0 : 100,
+            }}
+             transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            onClick={() => setIsHideSocmed(!isHideSocmed)} 
+            className="bg-[#1DCD9F] text-white px-5 py-2.5 rounded-lg"
           >
-            {isHideSocmed ? (
-              <span className="text-black">
-                <motion.svg
+            {!isHideSocmed ? "Let's talk" : <motion.svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="mx-auto"
-                  width="30"
-                  height="30"
+                  width="24"
+                  height="24"
                   initial="hidden"
                   animate="visible"
                 >
                   <motion.line 
                     x1="8"
                     y1="8"
-                    x2="22"
-                    y2="22"
-                    stroke="#000"
+                    x2="18"
+                    y2="18"
+                    stroke="#fff"
                     variants={closeIconVariants}
                     custom={2}
                     style={shape}
                   />
                   <motion.line 
                     x1="8"
-                    y1="22"
-                    x2="22"
+                    y1="18"
+                    x2="18"
                     y2="8"
-                    stroke="#000"
+                    stroke="#fff"
                     variants={closeIconVariants}
                     custom={2}
                     style={shape}
                   />
-                </motion.svg>
-              </span>
-            ) : (
-              <p className="w-full truncate">Let's Talk 🚀</p>
-            )}
+                </motion.svg>}
           </motion.button>
-          <SocmedContainer isHide={isHideSocmed} socialMedia={socialMedia} />
+          {isHideSocmed && <SocmedContainer isHide={isHideSocmed} socialMedia={socialMedia} />}
         </div>
       </div>
     </div>
   );
 }
 
+
 const shape: CSSProperties = {
   strokeWidth: 2,
   strokeLinecap: "round",
-  fill: "transparent"
+  fill: "transparent",
 }

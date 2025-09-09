@@ -1,4 +1,4 @@
-import { motion, useInView, Variants } from "motion/react"
+import { motion, Variants } from "motion/react"
 import TagLabel from "./GenrePostLabel";
 
 interface Post {
@@ -17,27 +17,27 @@ export default function PostCard(props: Post) {
     const tagPostColorGenerator = (skill: string) => {
         switch(skill) {
             case "javascript" :
-                return 'bg-yellow-500'
+                return 'bg-yellow-500/40'
             case "react":
-                return 'bg-blue-500'
+                return 'bg-blue-500/40'
             case "frontend":
-                return 'bg-cyan-500'
+                return 'bg-cyan-500/40'
             case "webdev":
-                return 'bg-orange-500'
+                return 'bg-orange-500/40'
             case "typescript":
-                return 'bg-blue-300'
+                return 'bg-blue-300/40'
             case "nextjs":
                 return 'bg-black'
             case 'prisma':
-                return 'bg-gray-800'
+                return 'bg-gray-800/40'
             case 'tailwindcss':
-                return 'bg-blue-600'
+                return 'bg-blue-600/40'
             case 'flutter':
-                return 'bg-blue-400'
+                return 'bg-blue-400/40'
             case 'reactnative':
-                return 'bg-blue-500'
+                return 'bg-blue-500/40'
             default :
-                return 'bg-gray-500'
+                return 'bg-gray-500/40'
         }
     }
 
@@ -54,7 +54,7 @@ export default function PostCard(props: Post) {
                     className={`rounded-lg object-cover absolute top-0 left-0 h-full w-full`}
                 />
             {/* gradient layer */}
-                <motion.div
+                <div
                     className="absolute z-10 inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none"
                 />
                 <div className="absolute z-20 bottom-5 left-5 w-[550px]">

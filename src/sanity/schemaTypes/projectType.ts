@@ -1,4 +1,3 @@
-import { m } from "motion/react";
 import { defineField, defineType } from "sanity";
 
 export const projectType = defineType({
@@ -29,6 +28,12 @@ export const projectType = defineType({
         defineField({
             name: "description",
             type: "string"
+        }),
+        defineField({
+            name: "color",
+            type: "string",
+            title: "Color",
+            description: "Color of the project (using hexadecimal format)",
         }),
         defineField({
             name: "techStack",

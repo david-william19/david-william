@@ -11,7 +11,8 @@ const config: Config = {
   	extend: {
   		fontFamily: {
   			sans: ['var(--font-sans)'],
-  			thunder: ['var(--font-thunder)']
+  			thunder: ['var(--font-thunder)'],
+			poppins: ['var(--font-poppins)']
   		},
   		colors: {
   			background: 'hsl(var(--background))',
@@ -66,6 +67,5 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
 };
 export default config;

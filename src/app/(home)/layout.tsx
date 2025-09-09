@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { Open_Sans } from "next/font/google";
+import { Open_Sans, Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
@@ -14,6 +14,12 @@ export const metadata: Metadata = {
 const openSans = Open_Sans({
   subsets: ['latin'],
   variable: "--font-sans"
+})
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--poppins",
+  weight: ["400", "500", "600"]
 })
 
 const thunderFont = localFont({
@@ -53,7 +59,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${openSans.variable} ${thunderFont.variable} antialiased`}
+        className={`${openSans.variable} ${thunderFont.variable} ${poppins.variable} antialiased`}
       >
         <div className="w-full h-fit">
           <ReactQueryProvider>

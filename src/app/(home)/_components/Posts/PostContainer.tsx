@@ -47,6 +47,7 @@ export default function PostContainer() {
         show: {
             opacity: 1,
             y: '0px',
+            zIndex: '0',
             transition: {
                 ease: "easeOut",
             }
@@ -72,7 +73,7 @@ export default function PostContainer() {
                     whileHover={{
                         scale: 1.05,
 			            width: "800px",
-                        zIndex: 10,
+                        zIndex: '10',
                         transition: {
                             duration: 0.5
                         }

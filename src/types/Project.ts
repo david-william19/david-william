@@ -6,4 +6,6 @@ export interface Project {
 	_id: string
 	urlProject: string
 	imageUrl: string
+	deviceType: string
+	color: string
 }
