@@ -59,7 +59,7 @@ export default function SocmedContainer({isHide, socialMedia}:SocmedProps) {
           {
             socialMedia.map((data, index) => {
               return (
-                <motion.li variants={socmedItem} className="bg-white w-[40px] h-[40px] p-2.5 rounded-full" key={index}>
+                <motion.li variants={socmedItem} className="bg-[#ffffff62] w-[40px] h-[40px] p-2.5 rounded-full" key={index}>
                   <a href={data.link}>
                     <Image src={`/icons/${data.icon}.svg`} width={30} height={30} alt={`image-${index}`} />
                   </a>

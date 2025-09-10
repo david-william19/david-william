@@ -86,17 +86,19 @@ export default function HeaderSection() {
         <Scene />
       </motion.div>
       <div className="absolute bottom-20 w-full flex flex-col items-center">
-        <div className="flex gap-5 mt-5 min-w-[300px] items-center">
+        <div className="flex gap-5 mt-5 min-w-[300px] h-[45px] items-center">
           <motion.button 
             initial={false}
             animate={{
               x: isHideSocmed ? 0 : 100,
+              borderRadius: !isHideSocmed ? "10px" : "50%",
+              width: !isHideSocmed ? "110px" : "44px"
             }}
              transition={{ type: "spring", stiffness: 200, damping: 20 }}
             onClick={() => setIsHideSocmed(!isHideSocmed)} 
-            className="bg-[#1DCD9F] text-white px-5 py-2.5 rounded-lg"
+            className="bg-[#1DCD9F] text-white h-full flex items-center justify-center"
           >
-            {!isHideSocmed ? "Let's talk" : <motion.svg
+            {!isHideSocmed ? <p className="truncate">Let&apos;s talk</p> : <motion.svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="mx-auto"
                   width="24"

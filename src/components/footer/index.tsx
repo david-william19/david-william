@@ -17,17 +17,34 @@ export default function Footer() {
               learning.
             </p>
           </div>
+
+          <div className="flex gap-16 text-sm">
+          <div className="flex flex-col gap-2.5 text-white flex-1 justify-center-center">
+            <Link href={"project"}>Project</Link>
+            <Link href={"project"}>About</Link>
+            <Link href={"project"}>Post</Link>
+            <Link href={"resume"}>Get Resume</Link>
+          </div>
+
+          <div className="text-left flex flex-col gap-2.5">
+            <a href="https://www.linkedin.com/in/davidwilliamdacosta" target="_blank">
+              <p className="text-white">Twitter / X</p>
+            </a>
+            <a href="https://www.instagram.com/davdwilliam_" target="_blank">
+              <p className="text-white">Instagram</p>
+            </a>
+            <a href="https://www.linkedin.com/in/davidwilliamdacosta" target="_blank">
+              <p className="text-white">Linkedin</p>
+            </a>
+            <a href="mailto:davidwilldacosta@gmail.com" target="_blank">
+              <p className="text-white">Email</p>
+            </a>
+          </div>
+          </div>
         </div>
 
         <div className="text-sm mt-10 flex justify-between items-center">
           {/* quick link */}
-          <div className="flex text-white gap-5 flex-1 justify-center-center">
-            <Link href={"project"}>Project</Link>
-            <Link href={"project"}>About</Link>
-            <Link href={"project"}>Post</Link>
-            <Link href={"linkedin"}>Linkedin</Link>
-            <Link href={"resume"}>Get Resume</Link>
-          </div>
 
           <p className="text-xs text-right text-[#dcdcdc]">
             &copy; david stuff 2025
