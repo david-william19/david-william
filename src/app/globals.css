@@ -95,3 +95,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.without-scroll-pane::-webkit-scrollbar {
+  width: 10px;
+}
+
+.without-scroll-pane::-webkit-scrollbar-thumb {
+  background-color: #333b2f;
+  border-radius: 4px;
+}

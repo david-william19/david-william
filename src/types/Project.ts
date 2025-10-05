@@ -8,4 +8,5 @@ export interface Project {
 	imageUrl: string
 	deviceType: string
 	color: string
+	slug?: string;
 }

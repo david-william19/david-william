@@ -11,7 +11,7 @@ export default function NavLink({isScrolled}: {isScrolled: boolean}) {
                 gap: isScrolled ? "30px" : "50px",
             }}
         >
-          <Link className="hover:bg-[#1dcd9e2a] transition-all duration-200 py-1.5 px-3 rounded-full" href={"/"}>
+          <Link className={`hover:bg-[#1dcd9e2a] transition-all duration-200 py-1.5 px-3 rounded-full`} href={"/"}>
           Home
           </Link>
           <Link className="hover:bg-[#1dcd9e2a] transition-all duration-200 py-1.5 px-3 rounded-full" href={"/project"}>

@@ -5,15 +5,7 @@ import PostCard from "./PostCard";
 import { motion } from "framer-motion"
 import { useQuery } from "react-query";
 import clsx from "clsx";
-
-interface PostDevTo {
-    title: string;
-    description: string;
-    cover_image: string;
-    url: string;
-    tag_list: string[]
-    _id: string;
-}
+import { PostDevTo } from "@/types/Post";
 
 export default function PostContainer() {
     const {data, isLoading} = useQuery('getPosts', getPosts);
@@ -41,15 +33,16 @@ export default function PostContainer() {
         hidden: {
             opacity: 0,
             y: '200px',
-	    width: "300px",
+        width: "300px",
         },
 
         show: {
             opacity: 1,
             y: '0px',
-            zIndex: '0',
+            zIndex: 0,
             transition: {
-                ease: "easeOut",
+                staggerChildren: 0.10,
+                delayChildren: 0.5,
             }
         }
     }
@@ -72,8 +65,8 @@ export default function PostContainer() {
                     variants={cardVariants} 
                     whileHover={{
                         scale: 1.05,
-			            width: "800px",
-                        zIndex: '10',
+                        width: "800px",
+                        zIndex: 10,
                         transition: {
                             duration: 0.5
                         }

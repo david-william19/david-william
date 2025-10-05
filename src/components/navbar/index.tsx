@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import RecentPlayedModal from "../RecentPlayedModal";
+// import RecentPlayedModal from "../RecentPlayedModal";
 import {motion} from "framer-motion"
 import NavLink from "./NavLink";
 
@@ -37,7 +37,7 @@ export default function NavbarComponent() {
   }, [])
 
   return (
-    <motion.nav className="w-full pt-5 flex items-center fixed top-0 px-32 z-20"
+    <motion.nav className="w-full pt-5 flex items-center sticky top-0 px-32 z-20"
     animate={{
       background: isScrolled ? "linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0))" : "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0))",
     }}
@@ -76,7 +76,7 @@ export default function NavbarComponent() {
         {/* end time component */}
 
         {/* spotify status */}
-        <RecentPlayedModal />
+        {/* <RecentPlayedModal /> */}
         {/* end spotify status */}
       </div>
     </motion.nav>

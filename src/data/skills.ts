@@ -1,0 +1,1 @@
+export const mySkills = ["Next.js", "React", "Angular", "Vue", "TypeScript", "Java", "PHP", "Tailwind", "SCSS", "Jest", "React Testing Library", "Storybook", "sanity", "NodeJS", "ExpressJS", "Docker", "Github CI", "Gitlab CI", "AWS Cloud", "Huawei Cloud"]

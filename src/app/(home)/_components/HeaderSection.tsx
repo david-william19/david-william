@@ -52,7 +52,7 @@ export default function HeaderSection() {
   return (
     <div
       ref={ref}
-      className="w-full container relative pt-24 mx-auto z-0 h-screen bg-[#050505]"
+      className="w-full container relative pt-24 mx-auto z-0 h-screen"
     >
       {/* front end devs container */}
       <motion.div className="leading-none text-center mt-5 font-bold z-10 w-fit mx-auto">

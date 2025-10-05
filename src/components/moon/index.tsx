@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 import { GroupProps, useFrame, useLoader } from '@react-three/fiber';
-import { useSpring, animated } from '@react-spring/three';
+import { useSpring, animated, SpringValue } from '@react-spring/three';
 
 export function Moon3D(props: GroupProps) {
   const groupRef = useRef<THREE.Mesh>(null)
@@ -26,7 +26,7 @@ export function Moon3D(props: GroupProps) {
   })
 
   return (
-    <animated.group scale={spring.scale} {...props} dispose={null}>
+    <animated.group scale={spring.scale as SpringValue} {...props} dispose={null}>
       <mesh  
         castShadow
         receiveShadow

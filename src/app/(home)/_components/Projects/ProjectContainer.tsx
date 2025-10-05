@@ -32,9 +32,6 @@ export default function ProjectContainer({
     show: {
       opacity: 1,
       y: 0,
-      transition: {
-        ease: "easeOut",
-      },
     },
   };
 
@@ -71,11 +68,11 @@ export default function ProjectContainer({
         <div>
           <motion.p
             variants={contentVariants}
-            className="text-white font-thunder text-[50px] leading-none mt-5"
+            className="text-white font-poppins text-[24px] mt-5 font-light"
           >
             {project.name}
           </motion.p>
-          <motion.p className="text-slate-700 text-sm bg-white/50 py-1 px-2 rounded-md w-fit">
+          <motion.p className="text-slate-100 text-sm bg-white/20 py-1 px-2 rounded-md w-fit mt-2">
             {project.deviceType} Application
           </motion.p>
         </div>

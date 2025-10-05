@@ -11,13 +11,13 @@ export async function getAccessToken(clientId: string, clientSecret: string) {
 }
   
   // Function to get currently playing track
-export async function getCurrentlyPlaying(accessToken: string, clientId: string, clientSecret: string) {
+export async function getCurrentlyPlaying(accessToken: string) {
     try {
       const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
     //   if (error.response.status === 401) {
     //     // Token expired; get a new one
     //     const newAccessToken = await getAccessToken(clientId, clientSecret);
@@ -32,6 +32,7 @@ export const fetchRecentlyPlayed = async () => {
       const response = await axios.get("/api/spotify/recently-played");
       return response.data;
     } catch (error) {
+      console.error(error)
       return [];
     }
 };

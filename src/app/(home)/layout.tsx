@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import React from "react";
+import NavbarComponent from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "David's Portfolio",
@@ -59,13 +61,15 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${openSans.variable} ${thunderFont.variable} ${poppins.variable} antialiased`}
+        className={`${openSans.variable} ${thunderFont.variable} ${poppins.variable} bg-[#161618] antialiased`}
       >
         <div className="w-full h-fit">
           <ReactQueryProvider>
             <SmoothScrollProvider>
             <React.Fragment>
+            <NavbarComponent />
             {children}
+            <Footer />
             </React.Fragment>
             </SmoothScrollProvider>
           </ReactQueryProvider>

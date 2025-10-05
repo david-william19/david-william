@@ -5,13 +5,11 @@ export default function LoadingScreen() {
         start: {
             transition: {
                 staggerChildren: 0.1,
-                ease: "easeInOut",
             },
         },
         stop: {
             transition: {
                 staggerChildren: 0.1,
-                ease: "easeInOut",
             },
         },
     }
