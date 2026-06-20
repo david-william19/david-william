@@ -1,10 +1,10 @@
 import React, { useLayoutEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
-import { GroupProps, useFrame, useLoader } from '@react-three/fiber';
+import { ThreeElements, useFrame, useLoader } from '@react-three/fiber';
 import { useSpring, animated, SpringValue } from '@react-spring/three';
 
-export function Moon3D(props: GroupProps) {
+export function Moon3D(props: ThreeElements['group']) {
   const groupRef = useRef<THREE.Mesh>(null)
   const {materials} = useGLTF('/moon.glb');
   const [colorMap, displacementMap] = useLoader(THREE.TextureLoader, [

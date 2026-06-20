@@ -1,17 +1,12 @@
-import { urlFor } from "@/sanity/lib/image";
-import { Project } from "@/sanity/types";
-import ProjectCard from "./ProjectCard";
+import ProjectContainer from "@/app/(home)/_components/Projects/ProjectContainer";
+import { Project } from "@/types/Project";
 
 export default function ProjectList({ projects }: { projects: Project[] }) {
   return (
-    <div className="grid md:grid-cols-4 gap-5 mt-10 mb-40">
-      {projects.map((data) => {
-        const imageProject = data.headerImage ? urlFor(data.headerImage).url() : 'https://placehold.co/600x400/png';
-
-        return (
-        <ProjectCard key={data._id} {...data} imageProject={imageProject} />
-      )
-      })}
+    <div className="mb-32 mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project, id) => (
+        <ProjectContainer key={project._id ?? id} id={id} project={project} />
+      ))}
     </div>
   );
 }

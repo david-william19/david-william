@@ -14,7 +14,7 @@ export default async function PostsList() {
             : "https://placehold.co/600x400/png";
 
         return (
-         <PostCard key={data._id} {...data} imagePosts={imagePosts} />
+         <PostCard key={data.id} {...data} imagePosts={imagePosts} />
         );
       })}
     </div>

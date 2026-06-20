@@ -3,12 +3,12 @@
 import { getPosts } from "@/services/devtoApi";
 import PostCard from "./PostCard";
 import { motion } from "framer-motion"
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { PostDevTo } from "@/types/Post";
 
 export default function PostContainer() {
-    const {data, isLoading} = useQuery('getPosts', getPosts);
+    const {data, isLoading} = useQuery({ queryKey: ['getPosts'], queryFn: getPosts });
 
     const containerVariants = {
         hidden: {
@@ -59,9 +59,9 @@ export default function PostContainer() {
             margin: "-50px"
         }} initial="hidden" whileInView="show" className="flex items-center gap-2.5 max-w-1/2 justify-center h-fit mx-auto">
             {
-                data.map((post: PostDevTo, index: number) => (
-                <motion.div 
-                    key={post._id}  
+                data?.map((post: PostDevTo, index: number) => (
+                <motion.div
+                    key={post.id}
                     variants={cardVariants} 
                     whileHover={{
                         scale: 1.05,

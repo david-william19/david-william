@@ -1,9 +1,14 @@
 'use client'
 
-import Scene from "@/components/moon/Scene";
 import StaggerText from "@/components/staggerText";
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import { CSSProperties, useRef, useState } from "react";
+
+// The 3D moon relies on WebGL and react-three-fiber, which must run only in the
+// browser. Loading it with ssr:false keeps it off the server render and avoids
+// the react-reconciler/React-internals crash during SSR.
+const Scene = dynamic(() => import("@/components/moon/Scene"), { ssr: false });
 import SocmedContainer from "./SocmedContainer";
 import { SocialMedia } from "@/types/SocialMedia";
 

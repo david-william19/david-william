@@ -1,17 +1,22 @@
-export default function GridCardLoading({count}: {count: number}) {
-    return (
-        <div className="grid md:grid-cols-4 gap-5 mt-10">
+export default function GridCardLoading({ count }: { count: number }) {
+  return (
+    <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="bg-[#a6a6a623] rounded-lg overflow-hidden animate-pulse">
-          <div className="w-full h-[250px] bg-neutral-800/50" />
-          <div className="p-3 space-y-3">
-            <div className="h-5 w-2/3 bg-neutral-800/50 rounded" />
-            <div className="h-4 w-full bg-neutral-800/40 rounded" />
-            <div className="h-4 w-11/12 bg-neutral-800/40 rounded" />
-            <div className="h-4 w-9/12 bg-neutral-800/40 rounded" />
+        <div
+          key={i}
+          className="min-h-[400px] animate-pulse overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+        >
+          <div className="h-7 w-2/3 rounded bg-neutral-800/60" />
+          <div className="mt-3 h-6 w-1/3 rounded-full bg-neutral-800/50" />
+          <div className="mt-5 h-4 w-full rounded bg-neutral-800/40" />
+          <div className="mt-2 h-4 w-10/12 rounded bg-neutral-800/40" />
+          <div className="mt-5 flex gap-2">
+            <div className="h-5 w-14 rounded-full bg-neutral-800/40" />
+            <div className="h-5 w-16 rounded-full bg-neutral-800/40" />
+            <div className="h-5 w-12 rounded-full bg-neutral-800/40" />
           </div>
         </div>
       ))}
     </div>
-    )
+  );
 }

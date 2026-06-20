@@ -1,12 +1,13 @@
 
-export const PROJECTS_QUERY = `*[_type == "project"] | order(_updateAt desc){
+export const PROJECTS_QUERY = `*[_type == "project"] | order(_updatedAt desc){
 	name,
 	urlProject,
-  description,
-	headerImage,  
+	description,
 	"imageUrl": imageGallery.asset->url,
+	"headerImageUrl": headerImage.asset->url,
 	deviceType,
 	color,
+	techStack,
 	_id,
 }`;
 

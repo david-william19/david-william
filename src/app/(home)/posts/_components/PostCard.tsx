@@ -9,7 +9,7 @@ export default function PostCard(data: PostDevTo & { imagePosts: string }) {
   return (
     <ItemCard>
       {/* image project */}
-      <ItemCard.ImageHeader alt={`${data._id}-post`} src={data.imagePosts} />
+      <ItemCard.ImageHeader alt={`${data.id}-post`} src={data.imagePosts} />
       {/* content project */}
       <ItemCard.Body>
         <h3 className="text-white text-lg font-poppins font-semibold mb-2.5">

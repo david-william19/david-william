@@ -1,7 +1,7 @@
 "use client"
 
 import { fetchRecentlyPlayed } from "@/services/spotify";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -14,13 +14,11 @@ interface ITrack {
 }
 
 export  default function RecentPlayedContent() {
-    const { data, isLoading, isError, error } = useQuery(
-        ["recentlyPlayed"],
-        fetchRecentlyPlayed,
-        // {
-        //   staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
-        // }
-      );
+    const { data, isLoading, isError, error } = useQuery({
+        queryKey: ["recentlyPlayed"],
+        queryFn: fetchRecentlyPlayed,
+        // staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+      });
       const router = useRouter();
     const [isHovering, setIsHovering] = useState(false);
     
