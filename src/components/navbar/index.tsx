@@ -1,153 +1,84 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { navbarData } from "../../constants/navbar";
+"use client";
 
-interface NavbarContainerProps {
-  extendNavbar: Boolean;
-}
+import { useEffect, useState } from "react";
+// import RecentPlayedModal from "../RecentPlayedModal";
+import {motion} from "framer-motion"
+import NavLink from "./NavLink";
 
-function Navbar() {
-  const [extendNavbar, setExtendNavbar] = useState(false);
+export default function NavbarComponent() {
+  const [time, setTime] = useState<string | null>("00:00");
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const underlineStyle = 'underline'
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const date = new Date();
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const time = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
+      setTime(time);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
-    <NavbarContainer extendNavbar={extendNavbar}>
-      <NavbarInnerContainer>
-        <LeftContainer>
-          <HeaderTitle>DW</HeaderTitle>
-        </LeftContainer>
-        <RightContainer>
-          <NavbarLinkContainer>
-            {
-            navbarData.map(data => {
-              return (
-                <NavbarLink to={data.link} key={data.id}>{data.name}</NavbarLink>
-              )
-            })
-          }
-            <OpenLinksButton
-              onClick={() => {
-                setExtendNavbar((curr) => !curr);
-              }}
-            >
-              {extendNavbar ? <>&#10005;</> : <> &#8801;</>}
-            </OpenLinksButton>
-          </NavbarLinkContainer>
-        </RightContainer>
-      </NavbarInnerContainer>
-      {extendNavbar && (
-        <NavbarExtendedContainer>
-          {
-            navbarData.map(data => {
-              return (
-                <NavbarLinkExtended to={data.link} key={data.id}>{data.name}'s</NavbarLinkExtended>
-              )
-            })
-          }
-        </NavbarExtendedContainer>
-      )}
-    </NavbarContainer>
+    <motion.nav className="w-full pt-5 flex items-center sticky top-0 px-32 z-20"
+    animate={{
+      background: isScrolled ? "linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0))" : "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0))",
+    }}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
+      <h1 className="text-white font-semibold text-[32px] font-thunder flex-1">DW</h1>
+
+      <NavLink isScrolled={isScrolled} />
+
+      <div className="flex gap-5 flex-1 justify-end">
+        {/* time component */}
+        <div className="flex justify-center relative">
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="white"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </motion.svg>
+              <motion.p animate={{
+                opacity: 1,
+                transition: {
+                  duration: 0.5
+                }
+              }} className="font-thunder font-semibold text-white text-[18px] ml-1.5">
+                {time} <span className="text-white opacity-50">(JKT)</span>
+              </motion.p>
+        </div>
+        {/* end time component */}
+
+        {/* spotify status */}
+        {/* <RecentPlayedModal /> */}
+        {/* end spotify status */}
+      </div>
+    </motion.nav>
   );
 }
-
-const NavbarContainer = styled.nav<NavbarContainerProps>`
-  width: 100%;
-  height: ${(props) => (props.extendNavbar ? 'fit-content' : "80px")};
-  background-color: #fff;
-  box-shadow: 0 1px 6px 0 rgba(0,0,0, .3);
-  display: flex;
-  flex-direction: column;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-
-  .active {
-    text-decoration: underline;
-    transition: text-decoration 2s ease-in-out;
-  }
-
-  @media (min-width: 700px) {
-    height: 80px;
-  }
-`;
-
-const HeaderTitle = styled.h2`
-  color: #000;
-  font-size: ${(props) => props.theme.fontSize["2xl"]};
-  height: 100%;
-`;
-
-const LeftContainer = styled.div`
-  flex: 30%;
-  padding-left: 15px;
-`;
-
-const RightContainer = styled.div`
-  flex: 70%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const NavbarInnerContainer = styled.div`
-  width: 80%;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  margin: 0 auto;
-
-  @media only screen and (min-width: 700px){
-    width: 61%;
-    margin: 0 auto;
-  }
-`;
-
-const NavbarLinkContainer = styled.div`
-  display: flex;
-  gap: 50px;
-`;
-
-const NavbarLink = styled(NavLink)`
-  color: #000;
-  font-size: ${props => props.theme.fontSize.lg};
-  cursor: pointer;
-  text-decoration: none;
-
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-
-const NavbarLinkExtended = styled(NavLink)`
-  color: #000;
-  font-size: ${props => props.theme.fontSize.lg};
-  margin: 10px;
-`
-
-const OpenLinksButton = styled.button`
-  width: 70px;
-  height: 50px;
-  background: none;
-  border: none;
-  color: #000;
-  font-size: 45px;
-  cursor: pointer;
-  @media (min-width: 700px) {
-    display: none;
-  }
-`;
-
-const NavbarExtendedContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 700px) {
-    display: none;
-  }
-`;
-
-export default Navbar;
