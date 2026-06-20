@@ -15,7 +15,7 @@ export default function NavLink({isScrolled}: {isScrolled: boolean}) {
           Home
           </Link>
           <Link className="hover:bg-[#1dcd9e2a] transition-all duration-200 py-1.5 px-3 rounded-full" href={"/project"}>
-          Project
+          Work
           </Link>
           <Link className="hover:bg-[#1dcd9e2a] transition-all duration-200 py-1.5 px-3 rounded-full" href={"/posts"}>
           Posts

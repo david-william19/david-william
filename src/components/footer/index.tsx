@@ -20,10 +20,10 @@ export default function Footer() {
 
           <div className="flex gap-16 text-sm">
           <div className="flex flex-col gap-2.5 text-white flex-1 justify-center-center">
-            <Link href={"project"}>Project</Link>
-            <Link href={"project"}>About</Link>
-            <Link href={"project"}>Post</Link>
-            <Link href={"resume"}>Get Resume</Link>
+            <Link href={"/project"}>Work</Link>
+            <Link href={"/about"}>About</Link>
+            <Link href={"/posts"}>Posts</Link>
+            <Link href={"/resume"}>Get Resume</Link>
           </div>
 
           <div className="text-left flex flex-col gap-2.5">
