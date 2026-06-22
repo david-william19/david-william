@@ -39,7 +39,7 @@ function SectionCard({
         "rounded-xl p-5 md:p-6 bg-gradient-to-br from-[#252525a5] to-[#002118] shadow-sm",
         "ring-1 ring-white/5",
         "transition-transform hover:scale-[1.01] hover:shadow-md",
-        className
+        className,
       )}
     >
       {children}
@@ -57,7 +57,7 @@ function SectionTitle({ children }: React.PropsWithChildren) {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 md:px-6 min-h-screen flex items-center my-5]">
+    <div className="container mx-auto px-4 md:px-6 min-h-screen flex items-center my-5">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-7">
         {/* Sidebar About */}
         <SectionCard className="md:col-span-3">
